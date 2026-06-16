@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="be">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Правапіс службовых часцін мовы</title>
+
+<style>
+:root{
+    --red:#c91f28;
+    --dark:#1f2937;
+    --light:#fffdf8;
+    --accent:#f7e8d5;
+    --green:#15803d;
+    --shadow:0 12px 30px rgba(0,0,0,.1);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, Arial, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--light);
+    color:var(--dark);
+    line-height:1.6;
+}
+
+/* Арнамент */
+
+.ornament{
+    height:18px;
+    background:
+    repeating-linear-gradient(
+        45deg,
+        var(--red) 0 12px,
+        white 12px 24px
+    );
+}
+
+/* Шапка */
+
+header{
+    text-align:center;
+    padding:50px 20px;
+    background:
+    linear-gradient(rgba(255,255,255,.95),rgba(255,255,255,.95)),
+    url("https://www.transparenttextures.com/patterns/diamond-upholstery.png");
+}
+
+header h1{
+    color:var(--red);
+    font-size:clamp(2rem,5vw,3.5rem);
+    margin-bottom:15px;
+}
+
+header p{
+    max-width:700px;
+    margin:auto;
+    color:#555;
+}
+
+/* Навігацыя */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    background:var(--red);
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    padding:16px 22px;
+    transition:.3s;
+}
+
+nav a:hover{
+    background:#a9151d;
+}
+
+/* Агульныя стылі */
+
+.container{
+    width:min(1100px,92%);
+    margin:auto;
+}
+
+section{
+    padding:50px 0;
+}
+
+h2{
+    color:var(--red);
+    margin-bottom:20px;
+    font-size:2rem;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:28px;
+    box-shadow:var(--shadow);
+    margin-bottom:25px;
+    border-left:8px solid var(--red);
+}
+
+.example{
+    margin-top:18px;
+    padding:15px;
+    background:#fff3f3;
+    border-radius:12px;
+}
+
+/* Тэорыя */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+/* Тэст */
+
+.progress-wrapper{
+    width:100%;
+    background:#eee;
+    border-radius:20px;
+    overflow:hidden;
+    margin-bottom:25px;
+}
+
+.progress-bar{
+    height:14px;
+    width:0%;
+    background:var(--red);
+    transition:.4s;
+}
+
+.question{
+    display:none;
+    animation:fade .4s ease;
+}
+
+.question.active{
+    display:block;
+}
+
+.question h3{
+    margin-bottom:15px;
+    color:var(--red);
+}
+
+.options label{
+    display:block;
+    margin:10px 0;
+    padding:12px;
+    border:2px solid #ececec;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.options label:hover{
+    background:#fafafa;
+}
+
+input[type="text"],
+select{
+    width:100%;
+    padding:14px;
+    border:2px solid #ddd;
+    border-radius:12px;
+    margin-top:12px;
+    font-size:1rem;
+}
+
+.buttons{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin-top:30px;
+}
+
+button{
+    border:none;
+    background:var(--red);
+    color:white;
+    padding:14px 24px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:1rem;
+}
+
+button:hover{
+    background:#a9151d;
+}
+
+button:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.result{
+    display:none;
+    text-align:center;
+    padding:30px;
+    margin-top:25px;
+    background:#fff8ea;
+    border-radius:20px;
+}
+
+.result h3{
+    color:var(--red);
+    margin-bottom:15px;
+}
+
+/* Карткі */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.flip-card{
+    perspective:1000px;
+    height:180px;
+}
+
+.flip-inner{
+    width:100%;
+    height:100%;
+    position:relative;
+    transform-style:preserve-3d;
+    transition:transform .6s;
+}
+
+.flip-card:hover .flip-inner{
+    transform:rotateY(180deg);
+}
+
+.front,.back{
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+    backface-visibility:hidden;
+}
+
+.front{
+    background:var(--red);
+    color:white;
+}
+
+.back{
+    background:white;
+    border:3px solid var(--red);
+    transform:rotateY(180deg);
+}
+
+/* Футар */
+
+footer{
+    background:var(--dark);
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+    margin-top:50px;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:600px){
+    .buttons{
+        flex-direction:column;
+    }
+
+    button{
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="ornament"></div>
+
+<header>
+    <h1>Правапіс службовых часцін мовы</h1>
+    <p>
+        Інтэрактыўны адукацыйны сайт па беларускай мове:
+        вывучайце правілы, выконвайце заданні і правярайце свае веды.
+    </p>
+</header>
+
+<nav>
+    <a href="#theory">Тэорыя</a>
+    <a href="#quiz">Тэст</a>
+    <a href="#cards">Карткі</a>
+</nav>
+
+<div class="ornament"></div>
+
+<section id="theory">
+    <div class="container">
+
+        <h2>Тэарэтычны матэрыял</h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Прыназоўнікі</h3>
+                <p>
+                    Прыназоўнікі пішуцца асобна ад слоў, з якімі ўжываюцца.
+                </p>
+
+                <div class="example">
+                    у школе, каля дома, перад акном, на стале
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Злучнікі</h3>
+                <p>
+                    Злучнікі звязваюць словы і часткі сказа.
+                </p>
+
+                <div class="example">
+                    Разам: <b>затое, таксама, каб</b><br>
+                    Асобна: <b>таму што, для таго каб</b>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Часціцы</h3>
+                <p>
+                    Часціцы могуць пісацца разам, асобна або праз злучок.
+                </p>
+
+                <div class="example">
+                    Разам: <b>няўжо</b><br>
+                    Асобна: <b>бы, жа</b><br>
+                    Праз злучок: <b>сказаў-такі</b>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="quiz">
+    <div class="container">
+
+        <h2>Інтэрактыўны тэст</h2>
+
+        <div class="card">
+
+            <div class="progress-wrapper">
+                <div class="progress-bar" id="progress"></div>
+            </div>
+
+            <!-- Пытанне 1 -->
+            <div class="question active">
+                <h3>1. Выберыце правільны варыянт</h3>
+
+                <p>Мы засталіся дома, ... ішоў дождж.</p>
+
+                <div class="options">
+                    <label><input type="radio" name="q1" value="0"> тамушто</label>
+                    <label><input type="radio" name="q1" value="1"> таму што</label>
+                    <label><input type="radio" name="q1" value="0"> таму-што</label>
+                </div>
+            </div>
+
+            <!-- Пытанне 2 -->
+            <div class="question">
+                <h3>2. Устаўце прапушчаны прыназоўнік</h3>
+
+                <p>Мы сустрэліся _____ школы.</p>
+
+                <input type="text" id="q2" placeholder="Увядзіце адказ">
+            </div>
+
+            <!-- Пытанне 3 -->
+            <div class="question">
+                <h3>3. Вызначце памылковы сказ</h3>
+
+                <select id="q3">
+                    <option value="">Абярыце адказ</option>
+                    <option value="0">Я зайшоў у бібліятэку.</option>
+                    <option value="1">Мы спазніліся, затое што быў затор.</option>
+                    <option value="0">Яна сядзела каля акна.</option>
+                </select>
+            </div>
+
+            <!-- Пытанне 4 -->
+            <div class="question">
+                <h3>4. Як пішацца часціца «-такі»?</h3>
+
+                <div class="options">
+                    <label><input type="radio" name="q4" value="0"> асобна</label>
+                    <label><input type="radio" name="q4" value="1"> праз злучок</label>
+                    <label><input type="radio" name="q4" value="0"> разам</label>
+                </div>
+            </div>
+
+            <!-- Пытанне 5 -->
+            <div class="question">
+                <h3>5. Выберыце правільны адказ</h3>
+
+                <p>Слова «затое» пішацца:</p>
+
+                <div class="options">
+                    <label><input type="radio" name="q5" value="1"> разам</label>
+                    <label><input type="radio" name="q5" value="0"> асобна</label>
+                    <label><input type="radio" name="q5" value="0"> праз злучок</label>
+                </div>
+            </div>
+
+            <!-- Пытанне 6 -->
+            <div class="question">
+                <h3>6. Праўда ці няпраўда?</h3>
+
+                <p>Прыназоўнікі заўсёды пішуцца асобна ад самастойных слоў.</p>
+
+                <div class="options">
+                    <label><input type="radio" name="q6" value="1"> Праўда</label>
+                    <label><input type="radio" name="q6" value="0"> Няпраўда</label>
+                </div>
+            </div>
+
+            <!-- Пытанне 7 -->
+            <div class="question">
+                <h3>7. Выпраўце памылку</h3>
+
+                <p>Запішыце правільна: <b>длятаго каб</b></p>
+
+                <input type="text" id="q7" placeholder="Ваш адказ">
+            </div>
+
+            <!-- Пытанне 8 -->
+            <div class="question">
+                <h3>8. Абярыце ўсе злучнікі</h3>
+
+                <div class="options">
+                    <label><input type="checkbox" class="q8" value="і"> і</label>
+                    <label><input type="checkbox" class="q8" value="каля"> каля</label>
+                    <label><input type="checkbox" class="q8" value="але"> але</label>
+                    <label><input type="checkbox" class="q8" value="пад"> пад</label>
+                </div>
+            </div>
+
+            <!-- Пытанне 9 -->
+            <div class="question">
+                <h3>9. Выберыце сказ без памылак</h3>
+
+                <div class="options">
+                    <label><input type="radio" name="q9" value="1"> Мы засталіся дома, таму што ішоў снег.</label>
+                    <label><input type="radio" name="q9" value="0"> Мы засталіся дома, тамушто ішоў снег.</label>
+                    <label><input type="radio" name="q9" value="0"> Мы засталіся дома, таму-што ішоў снег.</label>
+                </div>
+            </div>
+
+            <!-- Пытанне 10 -->
+            <div class="question">
+                <h3>10. Завяршыце правіла</h3>
+
+                <p>Прыназоўнікі пішуцца __________ ад слоў.</p>
+
+                <input type="text" id="q10" placeholder="Увядзіце слова">
+            </div>
+
+            <div class="buttons">
+                <button id="prevBtn" onclick="changeQuestion(-1)" disabled>
+                    Назад
+                </button>
+
+                <button id="nextBtn" onclick="changeQuestion(1)">
+                    Наперад
+                </button>
+            </div>
+
+            <div class="result" id="result"></div>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="cards">
+    <div class="container">
+
+        <h2>Карткі для паўтарэння</h2>
+
+        <div class="cards">
+
+            <div class="flip-card">
+                <div class="flip-inner">
+                    <div class="front">Прыназоўнікі</div>
+                    <div class="back">Пішуцца асобна ад слоў.</div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-inner">
+                    <div class="front">«Таму што»</div>
+                    <div class="back">Састаўны злучнік, пішацца асобна.</div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-inner">
+                    <div class="front">«Затое»</div>
+                    <div class="back">Злучнік, пішацца разам.</div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-inner">
+                    <div class="front">«-такі»</div>
+                    <div class="back">Часціца, пішацца праз злучок.</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 • Правапіс службовых часцін мовы • Беларуская мова • Ясь Арцем
+</footer>
+
+<script>
+const questions = document.querySelectorAll('.question');
+const progress = document.getElementById('progress');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+let current = 0;
+
+function updateQuiz() {
+
+    questions.forEach((q, i) => {
+        q.classList.toggle('active', i === current);
+    });
+
+    progress.style.width = ((current + 1) / questions.length) * 100 + '%';
+
+    prevBtn.disabled = current === 0;
+
+    nextBtn.textContent =
+        current === questions.length - 1
+        ? 'Завяршыць'
+        : 'Наперад';
+}
+
+function changeQuestion(step) {
+
+    if (current === questions.length - 1 && step === 1) {
+        showResult();
+        return;
+    }
+
+    current += step;
+
+    if (current < 0) current = 0;
+    if (current >= questions.length) current = questions.length - 1;
+
+    updateQuiz();
+}
+
+function showResult() {
+
+    let score = 0;
+
+    if(document.querySelector('input[name="q1"]:checked')?.value === "1") score++;
+
+    if(document.getElementById('q2').value.trim().toLowerCase() === 'каля') score++;
+
+    if(document.getElementById('q3').value === '1') score++;
+
+    if(document.querySelector('input[name="q4"]:checked')?.value === "1") score++;
+
+    if(document.querySelector('input[name="q5"]:checked')?.value === "1") score++;
+
+    if(document.querySelector('input[name="q6"]:checked')?.value === "1") score++;
+
+    if(document.getElementById('q7').value.trim().toLowerCase() === 'для таго каб') score++;
+
+    const checked = [...document.querySelectorAll('.q8:checked')].map(el => el.value);
+
+    if(
+        checked.includes('і') &&
+        checked.includes('але') &&
+        checked.length === 2
+    ){
+        score++;
+    }
+
+    if(document.querySelector('input[name="q9"]:checked')?.value === "1") score++;
+
+    if(document.getElementById('q10').value.trim().toLowerCase() === 'асобна') score++;
+
+    document.querySelector('.buttons').style.display = 'none';
+
+    const result = document.getElementById('result');
+
+    let text = '';
+
+    if(score === 10){
+        text = '🏆 Выдатны вынік! Вы цудоўна ведаеце тэму.';
+    } else if(score >= 8){
+        text = '👍 Вельмі добра! У вас высокі ўзровень ведаў.';
+    } else if(score >= 5){
+        text = '📚 Добры пачатак! Рэкамендуем паўтарыць правілы.';
+    } else {
+        text = '💡 Патрэбна яшчэ папрацаваць над тэмай.';
+    }
+
+    result.style.display = 'block';
+    result.innerHTML = `
+        <h3>Ваш вынік: ${score} з 10</h3>
+        <p>${text}</p>
+        <br>
+        <button onclick="location.reload()">Прайсці яшчэ раз</button>
+    `;
+
+    window.scrollTo({
+        top: result.offsetTop - 120,
+        behavior: 'smooth'
+    });
+}
+
+updateQuiz();
+</script>
+
+</body>
+</html>
